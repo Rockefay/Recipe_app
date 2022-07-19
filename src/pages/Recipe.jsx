@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import React from "react";
 
@@ -22,7 +23,12 @@ function Recipe() {
   }, [params.id]);
 
   return (
-    <DetailWraper>
+    <DetailWraper
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+    >
       <div>
         <h2>{details.title}</h2>
         <img src={details.image} alt="" />
@@ -58,7 +64,7 @@ function Recipe() {
   );
 }
 
-const DetailWraper = styled.div`
+const DetailWraper = styled(motion.div)`
   margin-top: 10rem;
   margin-bottom: 5rem;
   display: flex;
